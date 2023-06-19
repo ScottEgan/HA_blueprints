@@ -800,15 +800,16 @@ action:
                                     title: "{{button_3}}"
                                     uri: "{{url_3}}"
                                     destructive: true
-                  - conditions: "{{ persistent_notification }}"
-                    sequence:
-                      - alias: "Send Persistant Notification"
-                        service: persistent_notification.create
-                        data:
-                          title: "{{title}}"
-                          message: > 
-                            {{message}}
-                            ![image](/api/frigate/notifications/{{id}}/snapshot.jpg)
+                  - choose:
+                    - conditions: "{{ persistent_notification }}"
+                      sequence:
+                        - alias: "Send Persistant Notification"
+                          service: persistent_notification.create
+                          data:
+                            title: "{{title}}"
+                            message: > 
+                              {{message}}
+                              ![image](/api/frigate/notifications/{{id}}/snapshot.jpg)
                     default:
                       - service: "notify.{{ group_target }}"
                         data:
@@ -1011,15 +1012,16 @@ action:
                                           title: "{{button_3}}"
                                           uri: "{{url_3}}"
                                           destructive: true
-                        - conditions: "{{ persistent_notification }}"
-                          sequence:
-                            - alias: "Send Persistant Notification"
-                              service: persistent_notification.create
-                              data:
-                                title: "{{title}}"
-                                message: > 
-                                  {{message}}
-                                  ![image](/api/frigate/notifications/{{id}}/snapshot.jpg)
+                        - choose:
+                          - conditions: "{{ persistent_notification }}"
+                            sequence:
+                              - alias: "Send Persistant Notification"
+                                service: persistent_notification.create
+                                data:
+                                  title: "{{title}}"
+                                  message: > 
+                                    {{message}}
+                                    ![image](/api/frigate/notifications/{{id}}/snapshot.jpg)
                           default:
                             - service: "notify.{{ group_target }}"
                               data:
