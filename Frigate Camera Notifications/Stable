@@ -806,6 +806,7 @@ action:
                         - alias: "Send Persistant Notification"
                           service: persistent_notification.create
                           data:
+                            notification_id: "{{id}}"
                             title: "{{title}}"
                             message: > 
                               {{message}}
@@ -1018,6 +1019,7 @@ action:
                               - alias: "Send Persistant Notification"
                                 service: persistent_notification.create
                                 data:
+                                  notification_id: "{{id}}"
                                   title: "{{title}}"
                                   message: > 
                                     {{message}}
